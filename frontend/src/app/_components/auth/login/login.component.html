@@ -1,0 +1,57 @@
+<!-- Default form login -->
+
+<div class='container' style="width: 1833px !important;">
+  <form #loginForm="ngForm" (ngSubmit)="onLogIn()">
+  
+  <p class="h4 mb-4">Sign in</p>
+
+  Email ID
+       <input 
+            [(ngModel)]="email"
+            name="email"
+            pattern="^\S+@\S+$"
+            required="required"
+            placeholder="Email" 
+            class="form-control mb-4"
+            />
+ Password
+
+ <input class="form-control mb-4"
+            [(ngModel)]="password"
+            name="password"
+            required="required"
+            pattern=".{6,30}"
+            type="password"
+            placeholder="Password" />
+ 
+      <!-- Forgot password -->
+      <div *ngIf="warningMessage">
+           <mat-icon>warning</mat-icon>
+           {{warningMessage}}
+        </div>
+   
+
+  <!-- Sign in button -->
+  <button mat-raised-button color="info" block="true" class="my-4" type="submit">Sign in</button>
+ 
+  <!-- Register -->
+ 
+  <p>Not a member?
+     <a
+          [routerLink]="['/register']"
+          routerLinkActive="link-active">
+          <span>Register</span>
+      </a>
+  </p>
+
+
+</form>
+  <!-- Social login -->
+
+
+ 
+
+ 
+</div>
+
+

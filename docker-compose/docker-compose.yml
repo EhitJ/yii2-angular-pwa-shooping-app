@@ -1,0 +1,51 @@
+version: "2"
+
+
+services:
+
+  nginx:
+    image: nginx
+    restart: always
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ../:/code
+    ports:
+      - "4003:80"
+      - "4004:8081"
+      - "4204:8080"
+    networks:
+      - code-networklatest  
+  php:
+    build: ./php
+    restart: always
+    expose:
+      - "9000"
+    networks:
+      - code-networklatest  
+    volumes:
+      - ../:/code
+
+  mysql:
+    image: mysql:8.0.0
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - code-networklatest       
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_MAX_ALLOWED_PACKET: 1024M
+      MYSQL_INNODB_BUFFER_POOL_SIZE: 1G
+      MYSQL_INNODB_LOG_FILE_SIZE: 256M
+      MYSQL_INNODB_LOG_BUFFER_SIZE: 256M
+ 
+
+
+networks:
+    code-networklatest:
+        driver: bridge

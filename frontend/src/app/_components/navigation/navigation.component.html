@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <div style='padding: 38px;'><h3><b>Shopping Application</b></h3></div>
+  <ul class="nav" *ngIf="loggedIn" >
+    <li>
+      <a class="menu-item"
+        [routerLink]="['home']"
+        routerLinkActive="link-active">
+       <mat-icon>list</mat-icon>
+      </a>  
+    </li>
+    <li>
+      <a class="menu-item"
+        [routerLink]="['cart']"
+        >
+        <mat-icon>shopping_cart</mat-icon>
+      </a>  
+    </li>
+    <li>
+      <a class="menu-item"
+        (click)="logout()"
+        routerLink="#"
+        routerLinkActive="link-active">
+        <mat-icon>power_settings_new</mat-icon>
+      </a>
+    </li>
+  </ul>
+
+    
+</mat-toolbar>

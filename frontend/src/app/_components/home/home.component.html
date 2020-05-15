@@ -1,0 +1,44 @@
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+ <ng-container matColumnDef="srno">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.srno}} </mat-cell>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef> Product Name. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="image_path">
+    <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <img src="{{imagepath}}{{element.image_path}}"> </mat-cell>
+  </ng-container>
+    <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Buy </mat-header-cell>
+    <mat-cell *matCellDef="let element"><button (click)="buyproduct(element.id)" > Buy Now</button> </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+  <div *ngIf="warningMessage">
+           <mat-icon>warning</mat-icon>
+           {{warningMessage}}
+        </div>
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

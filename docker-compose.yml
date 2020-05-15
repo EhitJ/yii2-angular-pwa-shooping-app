@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+
+  php-apache:
+    build: frontend
+    ports:
+      - 20080:80
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+      - ./:/app
+
+  mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=soa
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+
